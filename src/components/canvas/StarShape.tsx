@@ -1,8 +1,17 @@
-import { PointMaterial, Points } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
-import image from './image.png';
-import { useRef, useState, useEffect } from 'react';
+import { colors } from '@/constants/colors';
+import { PointMaterial, Points, Text } from '@react-three/drei';
+import { useFrame, Vector3 } from '@react-three/fiber';
+import { StaticImageData } from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { MathUtils } from 'three';
+
+interface StarShapeProps {
+  image: StaticImageData;
+  position?: Vector3;
+  text?: string;
+  onClick?: (position: Vector3) => void;
+}
 
 //TODO: Needs to be exported?
 function convertImageToVertices(imageSrc: string, threshold = 128) {
@@ -37,18 +46,24 @@ function convertImageToVertices(imageSrc: string, threshold = 128) {
   });
 }
 
-export function StarShape(props: {}) {
-  const size = 0.004; //TODO: Do we need to pass this in?
+export function StarShape(props: StarShapeProps) {
+  const { image, position, text, onClick } = props;
+  const starSize = 0.004; //TODO: Do we need to pass this in?
+  const hoverEffectSpeed = 0.2;
+  const hoverScale = 1.1;
 
+  const groupRef = useRef<THREE.Group>();
   const shapeRef = useRef<THREE.Points>();
-
-  const materialRef = useRef<THREE.PointsMaterial>();
+  const starMaterialRef = useRef<THREE.PointsMaterial>();
+  const hitboxRef = useRef<THREE.Mesh>();
+  const textRef = useRef<THREE.PointsMaterial>();
 
   const [points, setPoints] = useState<Float32Array>();
+  const [hovered, setHovered] = useState(false);
+  const [textColor] = useState(new THREE.Color(colors.textSecondary));
 
   useEffect(() => {
     const loadImage = async () => {
-      //TODO: Pass in image into component
       convertImageToVertices(image.src).then((vertices) => {
         setPoints(vertices);
       });
@@ -56,30 +71,69 @@ export function StarShape(props: {}) {
     loadImage();
   }, []);
 
-  useFrame((state, delta) => {
+  useFrame((state, _delta) => {
     const time = state.clock.getElapsedTime();
-    const twinkleFactor = size + 0.001 * Math.sin(time * 2); // Adjust amplitude and frequency here
+    const twinkleFactor = starSize + 0.001 * Math.sin(time * 2); // Adjust amplitude and frequency here
 
     shapeRef.current.rotation.x = Math.sin(time) / 3;
     shapeRef.current.rotation.y = Math.sin(time * 0.5) / 10;
     shapeRef.current.rotation.z = Math.sin(time) / 10;
 
-    materialRef.current.size = twinkleFactor;
+    groupRef.current.scale.x = hovered
+      ? MathUtils.lerp(groupRef.current.scale.x, hoverScale, hoverEffectSpeed)
+      : MathUtils.lerp(groupRef.current.scale.x, 1, hoverEffectSpeed);
+
+    groupRef.current.scale.y = hovered
+      ? MathUtils.lerp(groupRef.current.scale.y, hoverScale, hoverEffectSpeed)
+      : MathUtils.lerp(groupRef.current.scale.y, 1, hoverEffectSpeed);
+
+    groupRef.current.scale.z = hovered
+      ? MathUtils.lerp(groupRef.current.scale.z, hoverScale, hoverEffectSpeed)
+      : MathUtils.lerp(groupRef.current.scale.z, 1, hoverEffectSpeed);
+
+    starMaterialRef.current.size = twinkleFactor;
+
+    const targetColor = hovered ? new THREE.Color('white') : new THREE.Color(colors.textSecondary);
+    textColor.lerp(targetColor, 0.2);
+    textRef.current.color = textColor;
   });
 
+  const handlePointerEnter = () => {
+    setHovered(true);
+  };
+
+  const handlePointerLeave = () => {
+    setHovered(false);
+  };
+
   return (
-    //TODO: Pass in position.
-    <group position={[0, 0, 0]} rotation={[0, 0, 0]}>
-      <Points ref={shapeRef} positions={points} stride={3} frustumCulled>
+    <group ref={groupRef} position={position}>
+      {/* This mesh is used as a hitbox for pointer detection */}
+      <mesh
+        ref={hitboxRef}
+        onClick={() => onClick(groupRef.current.position)}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
+        position={[0, 0, 0]}
+        rotation={[0, 0, 0]}
+      >
+        <planeGeometry args={[1, 1]} />
+        <meshBasicMaterial opacity={0} transparent depthWrite={false} />
+      </mesh>
+
+      <Points ref={shapeRef} positions={points} stride={3} frustumCulled={false}>
         <PointMaterial
-          ref={materialRef}
+          ref={starMaterialRef}
           transparent
-          color='#f272c8'
-          size={size}
+          color={colors.star}
+          size={starSize}
           sizeAttenuation={true}
-          depthWrite={false}
+          depthWrite={true}
         />
       </Points>
+      <Text ref={textRef} scale={0.1} position={[0, -0.6, 0]}>
+        {text}
+      </Text>
     </group>
   );
 }

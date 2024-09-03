@@ -1,10 +1,9 @@
 'use client';
 
-import { PerspectiveCamera } from '@react-three/drei';
 import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
 
-const StarShape = dynamic(() => import('@/components/canvas/StarShape').then((mod) => mod.StarShape), { ssr: false });
+import { Space } from '@/components/canvas/Space';
+
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
   ssr: false,
   //TODO: Make loading state
@@ -26,12 +25,8 @@ export default function Page() {
   return (
     <>
       <div className='w-full flex h-full bg-black'>
-        <View className='flex h-full w-full flex-col items-center justify-center'>
-          <Suspense fallback={null}>
-            <PerspectiveCamera makeDefault fov={90} position={[0, 0, 1]} />
-            <StarShape />
-            <ambientLight />
-          </Suspense>
+        <View className='h-full w-full'>
+          <Space />
         </View>
       </div>
     </>
