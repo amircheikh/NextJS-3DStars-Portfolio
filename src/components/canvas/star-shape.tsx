@@ -48,7 +48,7 @@ function convertImageToVertices(imageSrc: string, threshold = 128) {
 
 export function StarShape(props: StarShapeProps) {
   const { image, position, text, onClick } = props;
-  const starSize = 0.004; //TODO: Do we need to pass this in?
+  const starSize = 0.015; //TODO: Do we need to pass this in?
   const hoverEffectSpeed = 0.2;
   const hoverScale = 1.1;
 
@@ -60,7 +60,7 @@ export function StarShape(props: StarShapeProps) {
 
   const [points, setPoints] = useState<Float32Array>();
   const [hovered, setHovered] = useState(false);
-  const [textColor] = useState(new THREE.Color(colors.textSecondary));
+  const [textColor] = useState(new THREE.Color(colors.textsecondary));
 
   useEffect(() => {
     const loadImage = async () => {
@@ -93,7 +93,7 @@ export function StarShape(props: StarShapeProps) {
 
     starMaterialRef.current.size = twinkleFactor;
 
-    const targetColor = hovered ? new THREE.Color('white') : new THREE.Color(colors.textSecondary);
+    const targetColor = hovered ? new THREE.Color('white') : new THREE.Color(colors.textsecondary);
     textColor.lerp(targetColor, 0.2);
     textRef.current.color = textColor;
   });

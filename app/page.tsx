@@ -2,7 +2,11 @@
 
 import dynamic from 'next/dynamic';
 
-import { Space } from '@/components/canvas/Space';
+import { Space } from '@/components/canvas/space';
+import { ProjectsPanel } from '@/components/panel/projects/panel';
+import { CameraMovementContextProvider } from '@/components/provider/camera';
+import { Hud } from '@react-three/drei';
+import { useState } from 'react';
 
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
   ssr: false,
@@ -22,11 +26,16 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
 });
 
 export default function Page() {
+  const [showProjects, setShowProjects] = useState(false);
+
   return (
     <>
-      <div className='w-full flex h-full bg-black'>
-        <View className='h-full w-full'>
-          <Space />
+      <div className='w-full flex h-full bg-black overflow-hidden'>
+        <View className='h-full w-full overflow-hidden '>
+          <CameraMovementContextProvider>
+            <Space onClickProjects={() => setShowProjects(true)} />
+            <Hud>{showProjects && <ProjectsPanel onClose={() => setShowProjects(false)} />}</Hud>
+          </CameraMovementContextProvider>
         </View>
       </div>
     </>

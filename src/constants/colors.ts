@@ -1,4 +1,6 @@
 export const colors = {
     'star' : '#f272c8',
-    'textSecondary': '#4c4d4c',
+    'textprimary': '#ffffff',
+    'textsecondary': '#4c4d4c',
+    'panel': '#4b5563',
 }
