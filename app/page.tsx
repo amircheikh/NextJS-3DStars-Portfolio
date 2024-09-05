@@ -31,7 +31,7 @@ export default function Page() {
   return (
     <>
       <div className='w-full flex h-full bg-black overflow-hidden'>
-        <View className='h-full w-full overflow-hidden '>
+        <View className='h-full w-full overflow-hidden'>
           <CameraMovementContextProvider>
             <Space onClickProjects={() => setShowProjects(true)} />
             <Hud>{showProjects && <ProjectsPanel onClose={() => setShowProjects(false)} />}</Hud>

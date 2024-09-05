@@ -34,7 +34,7 @@ export function Panel(props: PanelProps) {
 
   return (
     <Html
-      className='flex items-center justify-center overflow-hidden backdrop-blur-md transition-all duration-1000'
+      className='flex items-center justify-center overflow-hidden backdrop-blur-md transition-all duration-1000 '
       style={{ opacity }}
       fullscreen
     >
