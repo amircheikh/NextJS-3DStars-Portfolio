@@ -1,4 +1,4 @@
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { ILinkWithIcon } from '@/types';
 import { faGithub, faUnity, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { StaticImageData } from 'next/image';
 import aiTextureSC1 from './images/AI-Texture-SC1.png';
@@ -10,11 +10,6 @@ import bunzelTownSC2 from './images/BunzelTown-SC2.png';
 import bunzelTownSC3 from './images/BunzelTown-SC3.png';
 import bunzelTownSC4 from './images/BunzelTown-SC4.png';
 import bunzelTownSC5 from './images/BunzelTown-SC5.png';
-
-export interface ILinkWithIcon {
-  icon: IconDefinition;
-  url: string;
-}
 
 export interface IProject {
   name: string;

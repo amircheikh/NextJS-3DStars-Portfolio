@@ -3,6 +3,8 @@
 import dynamic from 'next/dynamic';
 
 import { Space } from '@/components/canvas/space';
+import { AboutPanel } from '@/components/panel/about/panel';
+import { ExperiencePanel } from '@/components/panel/experience/panel';
 import { ProjectsPanel } from '@/components/panel/projects/panel';
 import { CameraMovementContextProvider } from '@/components/provider/camera';
 import { Hud } from '@react-three/drei';
@@ -26,6 +28,8 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
 });
 
 export default function Page() {
+  const [showAbout, setShowAbout] = useState(false);
+  const [showExperience, setShowExperience] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
 
   return (
@@ -33,8 +37,16 @@ export default function Page() {
       <div className='w-full flex h-full bg-black overflow-hidden'>
         <View className='h-full w-full overflow-hidden'>
           <CameraMovementContextProvider>
-            <Space onClickProjects={() => setShowProjects(true)} />
-            <Hud>{showProjects && <ProjectsPanel onClose={() => setShowProjects(false)} />}</Hud>
+            <Space
+              onClickAbout={() => setShowAbout(true)}
+              onClickExperience={() => setShowExperience(true)}
+              onClickProjects={() => setShowProjects(true)}
+            />
+            <Hud>
+              {showAbout && <AboutPanel onClose={() => setShowAbout(false)} />}
+              {showExperience && <ExperiencePanel onClose={() => setShowExperience(false)} />}
+              {showProjects && <ProjectsPanel onClose={() => setShowProjects(false)} />}
+            </Hud>
           </CameraMovementContextProvider>
         </View>
       </div>
