@@ -1,4 +1,5 @@
 import { BaseButton } from '@/components/button';
+import { Carousel } from '@/components/carousel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { Panel } from '..';
@@ -22,7 +23,11 @@ function Project(props: { project: IProject }) {
 
   return (
     <div className='w-full flex flex-col bg-panel/20 px-3 py-3 rounded-2xl'>
-      <Image className='rounded-2xl' src={images[0] /*TEMP ARRAY UNITL CAROUSEL*/} alt={''} />
+      <Carousel>
+        {images.map((image) => (
+          <Image src={image} alt={''} />
+        ))}
+      </Carousel>
 
       <div className='flex flex-row space-x-6 mt-6'>
         {links.map((link) => (

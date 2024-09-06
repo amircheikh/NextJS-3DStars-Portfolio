@@ -42,7 +42,7 @@ export function Panel(props: PanelProps) {
         <div className='h-fit text-textprimary font-medium text-5xl text-start flex flex-col items-center'>
           <div className='flex flex-row w-full justify-between'>
             <div>{title}</div>
-            <BaseButton onClick={handleClose}>
+            <BaseButton onClick={handleClose} isBack={true}>
               <FontAwesomeIcon icon={faTimes} color={colors.textsecondary} size={'sm'} />
             </BaseButton>
           </div>

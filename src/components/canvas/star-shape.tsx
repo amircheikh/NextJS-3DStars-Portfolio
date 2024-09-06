@@ -5,6 +5,9 @@ import { StaticImageData } from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { MathUtils } from 'three';
+import useSound from 'use-sound';
+import click from '../../sounds/click-1.mp3';
+import hover from '../../sounds/hover-1.mp3';
 
 interface StarShapeProps {
   image: StaticImageData;
@@ -62,6 +65,9 @@ export function StarShape(props: StarShapeProps) {
   const [hovered, setHovered] = useState(false);
   const [textColor] = useState(new THREE.Color(colors.textsecondary));
 
+  const [playHover] = useSound(hover, { interrupt: true });
+  const [playClick] = useSound(click, { interrupt: true });
+
   useEffect(() => {
     const loadImage = async () => {
       convertImageToVertices(image.src).then((vertices) => {
@@ -99,6 +105,7 @@ export function StarShape(props: StarShapeProps) {
   });
 
   const handlePointerEnter = () => {
+    playHover({ playbackRate: 0.7 + Math.random() * (1.1 - 0.7) });
     setHovered(true);
   };
 
@@ -106,12 +113,17 @@ export function StarShape(props: StarShapeProps) {
     setHovered(false);
   };
 
+  const handleClick = () => {
+    playClick();
+    onClick(groupRef.current.position);
+  };
+
   return (
     <group ref={groupRef} position={position}>
       {/* This mesh is used as a hitbox for pointer detection */}
       <mesh
         ref={hitboxRef}
-        onClick={() => onClick(groupRef.current.position)}
+        onClick={handleClick}
         onPointerEnter={handlePointerEnter}
         onPointerLeave={handlePointerLeave}
         position={[0, 0, 0]}
