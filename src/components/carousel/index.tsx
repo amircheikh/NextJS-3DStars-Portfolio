@@ -12,9 +12,9 @@ export function Carousel(props: { children: React.ReactNode[] }) {
   const next = () => setCurr((curr) => (curr == children.length - 1 ? 0 : curr + 1));
 
   return (
-    <div className='overflow-hidden relative rounded-2xl'>
+    <div className='overflow-hidden flex relative rounded-2xl'>
       <div
-        className='flex transition-transform ease-out duration-500'
+        className='flex flex-row transition-transform ease-out duration-500 '
         style={{ transform: `translateX(-${curr * 100}%)` }}
       >
         {children}

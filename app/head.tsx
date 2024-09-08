@@ -1,8 +1,8 @@
-const title = 'React Three Next Starter'
-const url = 'https://react-three-next.vercel.app/'
-const description = 'The easiest and fastest way to create a 3D website using React Three Fiber and NextJS'
-const author = 'Author'
-const twitter = '@pmndrs'
+const title = 'React Three Next Starter';
+const url = 'https://react-three-next.vercel.app/';
+const description = 'The easiest and fastest way to create a 3D website using React Three Fiber and NextJS';
+const author = 'Author';
+const twitter = '@pmndrs';
 
 export default function Head() {
   return (
@@ -34,6 +34,9 @@ export default function Head() {
       <meta property='og:site_name' content={title} />
       <meta property='og:description' content={description} />
 
+      <link rel='icon' href='/icons/favicon.ico' sizes='any' />
+      <link rel='icon' type='image/png' sizes='16x16' href='/icons/favicon-16x16.png' />
+      <link rel='icon' type='image/png' sizes='32x32' href='/icons/favicon-32x32.png' />
       <link rel='apple-touch-icon' href='/icons/apple-touch-icon.png' />
       <link rel='apple-touch-icon' sizes='16x16' href='/icons/favicon-16x16.png' />
       <link rel='apple-touch-icon' sizes='32x32' href='/icons/favicon-32x32.png' />
@@ -56,5 +59,5 @@ export default function Head() {
       <meta name='twitter:card' content='summary' />
       <meta name='twitter:site' content={twitter} />
     </>
-  )
+  );
 }

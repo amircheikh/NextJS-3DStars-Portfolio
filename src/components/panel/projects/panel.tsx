@@ -25,7 +25,7 @@ function Project(props: { project: IProject }) {
     <div className='w-full flex flex-col bg-panel/20 px-3 py-3 rounded-2xl'>
       <Carousel>
         {images.map((image) => (
-          <Image src={image} alt={''} />
+          <Image src={image} alt={''} placeholder='blur' />
         ))}
       </Carousel>
 

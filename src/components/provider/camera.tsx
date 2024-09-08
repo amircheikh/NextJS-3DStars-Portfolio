@@ -18,7 +18,7 @@ interface ICameraMovementContext {
 export const CameraMovementContext = createContext<ICameraMovementContext>({} as any);
 
 export function CameraMovementContextProvider(props: { children: React.ReactNode }) {
-  const cameraDefaultPos = useMemo(() => new Vector3(0, 0, 4), []); //TODO: If you don't provide position passing into Camera, it creates a cool effect. Use this if you want!
+  const cameraDefaultPos = useMemo(() => new Vector3(0, 0, 4), []);
   const cameraDefaultRotation = useMemo(() => new Euler(0, 0, 0), []);
   const cameraDefaultSpeed = useMemo(() => 8, []);
 
