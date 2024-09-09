@@ -17,7 +17,6 @@ interface StarShapeProps {
   onClick?: (position: Vector3) => void;
 }
 
-//TODO: Needs to be exported?
 function convertImageToVertices(imageSrc: string, threshold = 128) {
   return new Promise<Float32Array>((resolve) => {
     const img = new Image();
@@ -36,12 +35,12 @@ function convertImageToVertices(imageSrc: string, threshold = 128) {
       for (let y = 0; y < img.height; y++) {
         for (let x = 0; x < img.width; x++) {
           const index = (y * img.width + x) * 4;
-          const alpha = data[index + 3]; // Alpha value
+          const alpha = data[index + 3];
 
           if (alpha > threshold) {
-            const xPos = x / img.width - 0.5; // Normalize to -0.5 to 0.5 range
-            const yPos = y / img.height - 0.5; // Normalize to -0.5 to 0.5 range
-            vertices.push(xPos, -yPos, 0); // Add vertex at z = 0
+            const xPos = x / img.width - 0.5;
+            const yPos = y / img.height - 0.5;
+            vertices.push(xPos, -yPos, 0);
           }
         }
       }
@@ -52,7 +51,7 @@ function convertImageToVertices(imageSrc: string, threshold = 128) {
 
 export function StarShape(props: StarShapeProps) {
   const { image, position, text, onClick } = props;
-  const starSize = 0.015; //TODO: Do we need to pass this in?
+  const starSize = 0.015;
   const hoverEffectSpeed = 0.2;
   const hoverScale = 1.1;
 
@@ -81,7 +80,7 @@ export function StarShape(props: StarShapeProps) {
 
   useFrame((state, _delta) => {
     const time = state.clock.getElapsedTime();
-    const twinkleFactor = starSize + 0.001 * Math.sin(time * 2); // Adjust amplitude and frequency here
+    const twinkleFactor = starSize + 0.001 * Math.sin(time * 2);
 
     shapeRef.current.rotation.x = Math.sin(time) / 3;
     shapeRef.current.rotation.y = Math.sin(time * 0.5) / 10;
@@ -101,7 +100,7 @@ export function StarShape(props: StarShapeProps) {
 
     starMaterialRef.current.size = twinkleFactor;
 
-    const targetColor = hovered ? new THREE.Color('white') : new THREE.Color(colors.textsecondary);
+    const targetColor = hovered ? new THREE.Color(colors.textprimary) : new THREE.Color(colors.textsecondary);
     textColor.lerp(targetColor, 0.2);
     textRef.current.color = textColor;
   });

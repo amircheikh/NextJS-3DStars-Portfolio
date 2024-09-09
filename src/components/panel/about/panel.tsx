@@ -14,8 +14,8 @@ export function AboutPanel(props: { onClose: VoidFunction }) {
 
   return (
     <Panel title='About' onClose={onClose}>
-      <div className='w-[85vw] md:w-[30vw] flex flex-col px-2 py-2 justify-center overflow-y-scroll scrollbar-hide'>
-        <div className='w-full justify-center items-center flex flex-col bg-panel/20 px-3 py-3 rounded-2xl'>
+      <div className='w-[85vw] md:w-[30vw] flex flex-col px-2 py-2  overflow-y-scroll scrollbar-hide'>
+        <div className='w-full  flex flex-col bg-panel/20 px-3 py-3 rounded-2xl'>
           <div className='flex flex-col items-center space-y-1'>
             {/* NOTE: Your image is taken from /face.png. The same image that is used for the spinning face */}
             <Image

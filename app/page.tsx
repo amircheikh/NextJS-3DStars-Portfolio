@@ -8,11 +8,15 @@ import { ProjectsPanel } from '@/components/panel/projects/panel';
 import { CameraMovementContextProvider } from '@/components/provider/camera';
 import { Html, Hud } from '@react-three/drei';
 import { Suspense, useState } from 'react';
+import useSound from 'use-sound';
+import ambience from '../src/sounds/ambience.mp3';
 
 export default function Page() {
   const [showAbout, setShowAbout] = useState(false);
   const [showExperience, setShowExperience] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
+
+  useSound(ambience, { loop: true, autoplay: true });
 
   return (
     <div className='w-full flex h-full bg-black overflow-hidden'>
@@ -31,6 +35,7 @@ export default function Page() {
               onClickAbout={() => setShowAbout(true)}
               onClickExperience={() => setShowExperience(true)}
               onClickProjects={() => setShowProjects(true)}
+              onClickResume={() => window.open('/resume.pdf', '_blank', 'noopener,noreferrer')}
             />
           </Suspense>
           <Hud>

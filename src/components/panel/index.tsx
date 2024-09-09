@@ -39,7 +39,7 @@ export function Panel(props: PanelProps) {
       fullscreen
     >
       <div className=' max-h-[90%] flex flex-col rounded-2xl px-5 py-5 bg-panel/10 space-y-2 overflow-hidden'>
-        <div className='h-fit text-textprimary font-medium text-5xl text-start flex flex-col items-center'>
+        <div className='h-fit text-textprimary font-medium text-start flex flex-col items-center text-3xl md:text-5xl'>
           <div className='flex flex-row w-full justify-between'>
             <div>{title}</div>
             <BaseButton onClick={handleClose} isBack={true}>
