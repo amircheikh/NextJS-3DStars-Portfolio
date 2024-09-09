@@ -16,7 +16,13 @@ export const experienceData: IExperience[] = [
     companyName: 'Nest Wallet',
     companyImage: nestLogo,
     date: 'Jan 2024 - Aug 2024',
-    points: ['Very good person', 'Did lots of spearheading', 'moe odeh moe odhe modeh dehsfhuijsiufdshiufedshuihu'],
+    points: [
+      'Developed fullstack features using React Native for the frontend and Go/GraphQL for the backend',
+      'Enhanced user experience by adding animations and custom sound effects, gamifying key features',
+      'Improved app performance and stability by identifying and resolving critical issues',
+      'Created marketing videos for their Twitter, including 3D animations built with Blender',
+      'Collaborated with a remote team across Canada and the U.S., communicating daily via Slack and in morning standups',
+    ],
   },
 
   {

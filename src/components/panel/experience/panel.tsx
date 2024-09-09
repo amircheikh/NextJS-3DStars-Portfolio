@@ -28,14 +28,11 @@ function Experience(props: { project: IExperience }) {
       <div className='text-2xl md:text-3xl mt-6 text-textprimary font-bold'>{title}</div>
       <div className='mt-0.5 text-textsecondary text-lg  font-semibold'>{date}</div>
 
-      <div className='flex flex-col mt-3 space-y-2'>
+      <ul className='flex flex-col mt-3 space-y-2 list-disc ml-4'>
         {points.map((point) => (
-          <div className='flex flex-row space-x-3 items-center'>
-            <div className='rounded-full h-2 w-2 bg-panel' />
-            <div className='text-panel font-semibold text-lg'>{point}</div>
-          </div>
+          <li className='text-panel font-semibold text-lg'>{point}</li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

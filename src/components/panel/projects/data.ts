@@ -5,6 +5,7 @@ import aiTextureSC1 from './images/AI-Texture-SC1.png';
 import aiTextureSC2 from './images/AI-Texture-SC2.png';
 import aiTextureSC3 from './images/AI-Texture-SC3.png';
 import aiTextureSC4 from './images/AI-Texture-SC4.png';
+import aiTTSSC1 from './images/AI-TTS-SC1.png';
 import bunzelTownSC1 from './images/BunzelTown-SC1.png';
 import bunzelTownSC2 from './images/BunzelTown-SC2.png';
 import bunzelTownSC3 from './images/BunzelTown-SC3.png';
@@ -51,6 +52,17 @@ export const projectsData: IProject[] = [
       {
         icon: faYoutube,
         url: 'https://youtu.be/mihnhEf5PVQ',
+      },
+    ],
+  },
+  {
+    name: 'AI Text to Speech Discord Bot',
+    description: `A text to speech Discord bot made in Python that generates from custom, pretrained voices. This bot uses TorToiSe TTS to generate the speech. You can select from any of the pretrained voice models that I created, or train your own.`,
+    images: [aiTTSSC1],
+    links: [
+      {
+        icon: faGithub,
+        url: `https://github.com/amircheikh/AI-TTS-Discord-bot-TorToiSe`,
       },
     ],
   },
