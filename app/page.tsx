@@ -6,12 +6,15 @@ import { AboutPanel } from '@/components/panel/about/panel';
 import { ExperiencePanel } from '@/components/panel/experience/panel';
 import { ProjectsPanel } from '@/components/panel/projects/panel';
 import { CameraMovementContextProvider } from '@/components/provider/camera';
+import { StartScreen } from '@/components/start';
 import { Html, Hud } from '@react-three/drei';
 import { Suspense, useState } from 'react';
 import useSound from 'use-sound';
 import ambience from '../src/sounds/ambience.mp3';
 
 export default function Page() {
+  const [showStartScreen, setShowStartScreen] = useState(true);
+
   const [showAbout, setShowAbout] = useState(false);
   const [showExperience, setShowExperience] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
@@ -32,6 +35,7 @@ export default function Page() {
             }
           >
             <Space
+              showStartScreen={showStartScreen}
               onClickAbout={() => setShowAbout(true)}
               onClickExperience={() => setShowExperience(true)}
               onClickProjects={() => setShowProjects(true)}
@@ -39,6 +43,7 @@ export default function Page() {
             />
           </Suspense>
           <Hud>
+            {showStartScreen && <StartScreen onClose={() => setShowStartScreen(false)} />}
             {showAbout && <AboutPanel onClose={() => setShowAbout(false)} />}
             {showExperience && <ExperiencePanel onClose={() => setShowExperience(false)} />}
             {showProjects && <ProjectsPanel onClose={() => setShowProjects(false)} />}

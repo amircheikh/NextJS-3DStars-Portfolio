@@ -65,8 +65,8 @@ export function StarShape(props: StarShapeProps) {
   const [hovered, setHovered] = useState(false);
   const [textColor] = useState(new THREE.Color(colors.textsecondary));
 
-  const [playHover] = useSound(hover, { interrupt: true });
-  const [playClick] = useSound(click, { interrupt: true });
+  const [playHover] = useSound(hover);
+  const [playClick] = useSound(click);
   const [playFly] = useSound(fly);
 
   useEffect(() => {

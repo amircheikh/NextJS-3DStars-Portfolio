@@ -16,6 +16,7 @@ import { useScreenSize } from '@/helpers/hooks/screen-size';
 import { StarShape } from './star-shape';
 
 interface SpaceProps {
+  showStartScreen: boolean;
   onClickAbout: VoidFunction;
   onClickExperience: VoidFunction;
   onClickProjects: VoidFunction;
@@ -23,11 +24,11 @@ interface SpaceProps {
 }
 
 export function Space(props: SpaceProps) {
-  const { onClickAbout, onClickExperience, onClickProjects, onClickResume } = props;
+  const { showStartScreen, onClickAbout, onClickExperience, onClickProjects, onClickResume } = props;
 
   const cameraRef = useRef<THREE.PerspectiveCamera>();
 
-  const { cameraDefaultPos, cameraDefaultRotation, targetPosition, targetRotation, cameraSpeed, handleZoomCamera } =
+  const { cameraInitialPos, cameraDefaultRotation, targetPosition, targetRotation, cameraSpeed, handleZoomCamera } =
     useCameraMovement();
 
   const screenSize = useScreenSize();
@@ -63,35 +64,38 @@ export function Space(props: SpaceProps) {
 
   return (
     <group>
-      <PerspectiveCamera ref={cameraRef} makeDefault position={cameraDefaultPos} rotation={cameraDefaultRotation} />
+      <PerspectiveCamera ref={cameraRef} makeDefault position={cameraInitialPos} rotation={cameraDefaultRotation} />
       <ambientLight intensity={0.5} />
 
       <StarBackground />
       <FaceSquare position={isSmallScreen ? [0, 0, -4] : [0, 0, -2]} />
-      <StarShape
-        image={image1}
-        position={isSmallScreen ? [-1, 0, -3] : [-3, 0, -1]}
-        text='About'
-        onClick={handleClickAbout}
-      />
-      <StarShape
-        image={image2}
-        position={isSmallScreen ? [0, 2, -3] : [0, 1.5, -1]}
-        text='Experience'
-        onClick={handleClickExperience}
-      />
-      <StarShape
-        image={image3}
-        position={isSmallScreen ? [1, 0, -3] : [3, 0, -1]}
-        text='Projects'
-        onClick={handleClickProjects}
-      />
-      <StarShape
-        image={image4}
-        position={isSmallScreen ? [0, -2, -3] : [0, -1.5, -1]}
-        text='Resume'
-        onClick={handleClickResume}
-      />
+
+      <group visible={!showStartScreen}>
+        <StarShape
+          image={image1}
+          position={isSmallScreen ? [-1, 0, -3] : [-3, 0, -1]}
+          text='About'
+          onClick={handleClickAbout}
+        />
+        <StarShape
+          image={image2}
+          position={isSmallScreen ? [0, 2, -3] : [0, 1.5, -1]}
+          text='Experience'
+          onClick={handleClickExperience}
+        />
+        <StarShape
+          image={image3}
+          position={isSmallScreen ? [1, 0, -3] : [3, 0, -1]}
+          text='Projects'
+          onClick={handleClickProjects}
+        />
+        <StarShape
+          image={image4}
+          position={isSmallScreen ? [0, -2, -3] : [0, -1.5, -1]}
+          text='Resume'
+          onClick={handleClickResume}
+        />
+      </group>
     </group>
   );
 }

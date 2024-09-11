@@ -2,6 +2,7 @@ import React, { createContext, useContext, useMemo, useState } from 'react';
 import { Euler, Vector3 } from 'three';
 
 interface ICameraMovementContext {
+  cameraInitialPos: Vector3;
   cameraDefaultPos: Vector3;
   cameraDefaultRotation: Euler;
   cameraDefaultSpeed: number;
@@ -18,11 +19,15 @@ interface ICameraMovementContext {
 export const CameraMovementContext = createContext<ICameraMovementContext>({} as any);
 
 export function CameraMovementContextProvider(props: { children: React.ReactNode }) {
+  //Initial pos is the starting position when zoomed in on face
+  const cameraInitialPos = useMemo(() => new Vector3(0, 0, 0), []);
+
+  //Default pos is the position that shows all icons. Zoomed out from face
   const cameraDefaultPos = useMemo(() => new Vector3(0, 0, 4), []);
   const cameraDefaultRotation = useMemo(() => new Euler(0, 0, 0), []);
   const cameraDefaultSpeed = useMemo(() => 8, []);
 
-  const [targetPosition, setTargetPosition] = useState(cameraDefaultPos);
+  const [targetPosition, setTargetPosition] = useState(cameraInitialPos);
   const [targetRotation, setTargetRotation] = useState(cameraDefaultRotation);
   const [cameraSpeed, setCameraSpeed] = useState(cameraDefaultSpeed);
 
@@ -48,6 +53,7 @@ export function CameraMovementContextProvider(props: { children: React.ReactNode
 
   const memoizedContext = useMemo(
     () => ({
+      cameraInitialPos,
       cameraDefaultPos,
       cameraDefaultRotation,
       cameraDefaultSpeed,
