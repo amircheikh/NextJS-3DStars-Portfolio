@@ -16,7 +16,7 @@ interface ICameraMovementContext {
   handleZoomCamera: (to: Vector3) => void;
 }
 
-export const CameraMovementContext = createContext<ICameraMovementContext>({} as any);
+export const CameraMovementContext = createContext<ICameraMovementContext>({} as ICameraMovementContext);
 
 export function CameraMovementContextProvider(props: { children: React.ReactNode }) {
   //Initial pos is the starting position when zoomed in on face

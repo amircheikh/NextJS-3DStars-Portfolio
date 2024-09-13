@@ -52,8 +52,6 @@ function convertImageToVertices(imageSrc: string, threshold = 128) {
 export function StarShape(props: StarShapeProps) {
   const { image, position, text, onClick } = props;
   const starSize = 0.015;
-  const hoverEffectSpeed = 0.2;
-  const hoverScale = 1.1;
 
   const groupRef = useRef<THREE.Group>();
   const shapeRef = useRef<THREE.Points>();
@@ -78,7 +76,10 @@ export function StarShape(props: StarShapeProps) {
     loadImage();
   }, []);
 
-  useFrame((state, _delta) => {
+  useFrame((state, delta) => {
+    const hoverEffectSpeed = 15 * delta;
+    const hoverScale = 1.1;
+
     const time = state.clock.getElapsedTime();
     const twinkleFactor = starSize + 0.001 * Math.sin(time * 2);
 

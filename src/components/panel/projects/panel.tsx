@@ -9,7 +9,7 @@ export function ProjectsPanel(props: { onClose: VoidFunction }) {
   const { onClose } = props;
   return (
     <Panel title='Projects' onClose={onClose}>
-      <div className='w-[85vw] md:w-[40vw] flex flex-col px-2 py-2 space-y-7 overflow-y-scroll scrollbar-hide'>
+      <div className='w-[85vw] md:w-[45vw] 2xl:w-[40vw] flex flex-col px-2 py-2 space-y-7 overflow-y-scroll scrollbar-hide'>
         {projectsData.map((project) => (
           <Project project={project} />
         ))}
