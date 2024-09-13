@@ -10,8 +10,8 @@ export function ProjectsPanel(props: { onClose: VoidFunction }) {
   return (
     <Panel title='Projects' onClose={onClose}>
       <div className='w-[85vw] md:w-[45vw] 2xl:w-[40vw] flex flex-col px-2 py-2 space-y-7 overflow-y-scroll scrollbar-hide'>
-        {projectsData.map((project) => (
-          <Project project={project} />
+        {projectsData.map((project, i) => (
+          <Project project={project} key={i} />
         ))}
       </div>
     </Panel>
@@ -25,13 +25,13 @@ function Project(props: { project: IProject }) {
     <div className='w-full flex flex-col bg-panel/20 px-3 py-3 rounded-2xl'>
       <Carousel>
         {images.map((image) => (
-          <Image src={image} alt={''} placeholder='blur' />
+          <Image src={image} alt={''} placeholder='blur' key={image.src} />
         ))}
       </Carousel>
 
       <div className='flex flex-row space-x-6 mt-6'>
         {links.map((link) => (
-          <BaseButton onClick={() => window.open(link.url, '_blank', 'noopener,noreferrer')}>
+          <BaseButton onClick={() => window.open(link.url, '_blank', 'noopener,noreferrer')} key={link.url}>
             <FontAwesomeIcon href={link.url} icon={link.icon} size='2x' color='white' />
           </BaseButton>
         ))}

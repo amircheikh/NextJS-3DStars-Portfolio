@@ -33,7 +33,7 @@ export function AboutPanel(props: { onClose: VoidFunction }) {
           <div className='text-panel font-medium text-center text-lg mt-5'>{description}</div>
           <div className='flex flex-row space-x-6 mt-4 items-center justify-center w-full'>
             {links.map((link) => (
-              <BaseButton onClick={() => window.open(link.url, '_blank', 'noopener,noreferrer')}>
+              <BaseButton onClick={() => window.open(link.url, '_blank', 'noopener,noreferrer')} key={link.url}>
                 <FontAwesomeIcon href={link.url} icon={link.icon} size='2x' color='white' />
               </BaseButton>
             ))}

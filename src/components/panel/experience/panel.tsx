@@ -7,16 +7,16 @@ export function ExperiencePanel(props: { onClose: VoidFunction }) {
   return (
     <Panel title='Experience' onClose={onClose}>
       <div className='w-[85vw] md:w-[40vw] 2xl:w-[35vw] flex flex-col px-2 py-2 space-y-7 overflow-y-scroll scrollbar-hide'>
-        {experienceData.map((project) => (
-          <Experience project={project} />
+        {experienceData.map((job, i) => (
+          <Experience job={job} key={i} />
         ))}
       </div>
     </Panel>
   );
 }
 
-function Experience(props: { project: IExperience }) {
-  const { title, companyName, companyImage, date, points } = props.project;
+function Experience(props: { job: IExperience }) {
+  const { title, companyName, companyImage, date, points } = props.job;
 
   return (
     <div className='w-full flex flex-col bg-panel/20 px-4 py-4 rounded-2xl'>
@@ -30,7 +30,9 @@ function Experience(props: { project: IExperience }) {
 
       <ul className='flex flex-col mt-3 space-y-2 list-disc ml-4'>
         {points.map((point) => (
-          <li className='text-panel font-semibold text-lg'>{point}</li>
+          <li className='text-panel font-semibold text-lg' key={point}>
+            {point}
+          </li>
         ))}
       </ul>
     </div>

@@ -40,7 +40,7 @@ export function Carousel(props: { children: React.ReactNode[] }) {
       <div className='absolute bottom-4 right-0 left-0'>
         <div className='flex items-center justify-center gap-2'>
           {children.map((_, i) => (
-            <BaseButton onClick={() => setCurr(i)}>
+            <BaseButton onClick={() => setCurr(i)} key={i}>
               <div
                 className={`transition-all w-3 h-3 outline-black outline outline-1 bg-white rounded-full ${curr == i ? 'p-2' : 'bg-opacity-20'}`}
               />
