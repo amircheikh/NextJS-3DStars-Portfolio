@@ -23,7 +23,7 @@ export function StartScreen(props: { onClose: VoidFunction }) {
         className='w-full h-full flex items-end justify-center overflow-hidden px-4 py-24'
         onClick={handleClose}
       >
-        <div className='pointer-events-none'>Press anywhere to begin</div>
+        <div className='pointer-events-none font-[Montserrat] pt-2'>Press anywhere to begin</div>
       </BaseButton>
     </Html>
   );

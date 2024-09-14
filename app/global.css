@@ -17,3 +17,10 @@
     overflow: hidden;
   }
 }
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
