@@ -7,7 +7,7 @@
 [![Pull requests](https://img.shields.io/github/issues-pr/amircheikh/NextJS-3DStars-Portfolio?style=social&logo=github)](https://github.com/amircheikh/NextJS-3DStars-Portfolio/pulls)
 
 
-![stars-showcase-1](https://github.com/user-attachments/assets/e65738ca-9f7b-4f02-9553-796a098c6fd5)
+![3D stars thumbnail](https://github.com/user-attachments/assets/98862cbd-26f6-4ed8-9e94-de1e993faeb0)
 
 
 [![amircheikh](https://custom-icon-badges.demolab.com/badge/made%20by%20-amircheikh-556bf2?logo=github&logoColor=white&labelColor=101827)](https://github.com/amircheikh)
@@ -32,7 +32,7 @@ https://www.amircheikh.com/
 ## 💻 Technologies Used
 This project is built using:
 
-[![Technologies Used](https://skillicons.dev/icons?i=ts,nextjs,threejs,tailwind,vercel)](https://skillicons.dev)
+[![Technologies Used](https://skillicons.dev/icons?i=nextjs,threejs,ts,tailwind,vercel)](https://skillicons.dev)
 
 ## 🏎️ Getting Started
 
