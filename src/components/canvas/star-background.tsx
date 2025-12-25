@@ -18,7 +18,7 @@ export function StarBackground() {
   return (
     <group rotation={[0, 0, Math.PI / 4]} position={targetPosition}>
       <Points ref={ref} positions={sphere as Float32Array} stride={3} frustumCulled>
-        <PointMaterial transparent color='#f272c8' size={0.002} sizeAttenuation={true} depthWrite={true} />
+        <PointMaterial transparent color='#f272c8' size={0.005} sizeAttenuation={true} depthWrite={true} />
       </Points>
     </group>
   );

@@ -34,11 +34,11 @@ export function Panel(props: PanelProps) {
 
   return (
     <Html
-      className='flex items-center justify-center overflow-hidden backdrop-blur-md transition-all duration-1000 '
+      className={`flex items-center justify-center overflow-hidden backdrop-blur-md transition-all duration-1000 ${opacity === 1 ? 'pointer-events-auto' : 'pointer-events-none'}`}
       style={{ opacity }}
       fullscreen
     >
-      <div className=' max-h-[90%] flex flex-col rounded-2xl px-5 py-5 bg-panel/10 space-y-2 overflow-hidden'>
+      <div className='max-h-[90%] flex flex-col rounded-2xl px-5 py-5 bg-panel/10 space-y-2 overflow-hidden z-10'>
         <div className='h-fit text-textprimary font-medium text-start flex flex-col items-center text-3xl md:text-5xl'>
           <div className='flex flex-row w-full justify-between'>
             <div>{title}</div>
@@ -50,6 +50,7 @@ export function Panel(props: PanelProps) {
         </div>
         {children}
       </div>
+      <BaseButton className='absolute inset-0 size-full cursor-auto' isBack onClick={handleClose} />
     </Html>
   );
 }

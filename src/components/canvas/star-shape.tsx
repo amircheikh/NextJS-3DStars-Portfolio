@@ -1,4 +1,5 @@
 import { colors } from '@/constants/colors';
+import * as DREI from '@react-three/drei';
 import { PointMaterial, Points, Text } from '@react-three/drei';
 import { useFrame, Vector3 } from '@react-three/fiber';
 import { StaticImageData } from 'next/image';
@@ -51,17 +52,16 @@ function convertImageToVertices(imageSrc: string, threshold = 128) {
 
 export function StarShape(props: StarShapeProps) {
   const { image, position, text, onClick } = props;
-  const starSize = 0.015;
+  const starSize = 0.025;
 
   const groupRef = useRef<THREE.Group>(null);
   const shapeRef = useRef<THREE.Points>(null);
   const starMaterialRef = useRef<THREE.PointsMaterial>(null);
   const hitboxRef = useRef<THREE.Mesh>(null);
-  const textRef = useRef<THREE.PointsMaterial>(null);
+  const textRef = useRef<DREI.TextProps>(null);
 
-  const [points, setPoints] = useState<Float32Array>();
+  const [points, setPoints] = useState<Float32Array | undefined>();
   const [hovered, setHovered] = useState(false);
-  const [textColor] = useState(new THREE.Color(colors.textsecondary));
 
   const [playHover] = useSound(hover);
   const [playClick] = useSound(click);
@@ -69,6 +69,7 @@ export function StarShape(props: StarShapeProps) {
 
   useEffect(() => {
     const loadImage = async () => {
+      if (points && points.length > 0) return;
       convertImageToVertices(image.src).then((vertices) => {
         setPoints(vertices);
       });
@@ -81,7 +82,7 @@ export function StarShape(props: StarShapeProps) {
     const hoverScale = 1.1;
 
     const time = state.clock.getElapsedTime();
-    const twinkleFactor = starSize + 0.001 * Math.sin(time * 2);
+    const twinkleFactor = starSize + 0.008 * Math.sin(time * 1.5);
 
     shapeRef.current.rotation.x = Math.sin(time) / 3;
     shapeRef.current.rotation.y = Math.sin(time * 0.5) / 10;
@@ -101,9 +102,10 @@ export function StarShape(props: StarShapeProps) {
 
     starMaterialRef.current.size = twinkleFactor;
 
-    const targetColor = hovered ? new THREE.Color(colors.textprimary) : new THREE.Color(colors.textsecondary);
-    textColor.lerp(targetColor, 0.2);
-    textRef.current.color = textColor;
+    textRef.current.fontWeight = hovered
+      ? MathUtils.lerp(textRef.current.fontWeight as number, 500, hoverEffectSpeed)
+      : MathUtils.lerp(textRef.current.fontWeight as number, 350, hoverEffectSpeed);
+
   });
 
   const handlePointerEnter = () => {
@@ -146,7 +148,7 @@ export function StarShape(props: StarShapeProps) {
           depthWrite={true}
         />
       </Points>
-      <Text ref={textRef} scale={0.1} position={[0, -0.6, 0]}>
+      <Text ref={textRef} scale={0.1} position={[0, -0.6, 0]} color={colors.textprimary} fontWeight={350}>
         {text}
       </Text>
     </group>
