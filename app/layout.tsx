@@ -21,7 +21,6 @@ export default function RootLayout({ children }) {
         <link rel='apple-touch-icon' sizes='16x16' href='/icons/favicon-16x16.png' />
         <link rel='apple-touch-icon' sizes='32x32' href='/icons/favicon-32x32.png' />
         <link rel='apple-touch-icon' sizes='180x180' href='/icons/apple-touch-icon.png' />
-        <link rel='manifest' href='/manifest.json' />
         <link rel='mask-icon' color='#000000' href='/icons/safari-pinned-tab.svg' />
         <link rel='apple-touch-startup-image' href='/startup.png' />
       </head>

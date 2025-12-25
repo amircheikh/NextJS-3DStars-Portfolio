@@ -1,4 +1,4 @@
-import { colors } from './src/constants/colors'
+import { colors } from './src/constants/colors.ts'
 const plugin = require('tailwindcss/plugin')
 
 
@@ -14,7 +14,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-   plugins: [
+  plugins: [
     plugin(function ({ addUtilities }) {
       addUtilities({
         '.scrollbar-hide': {

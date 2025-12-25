@@ -53,11 +53,11 @@ export function StarShape(props: StarShapeProps) {
   const { image, position, text, onClick } = props;
   const starSize = 0.015;
 
-  const groupRef = useRef<THREE.Group>();
-  const shapeRef = useRef<THREE.Points>();
-  const starMaterialRef = useRef<THREE.PointsMaterial>();
-  const hitboxRef = useRef<THREE.Mesh>();
-  const textRef = useRef<THREE.PointsMaterial>();
+  const groupRef = useRef<THREE.Group>(null);
+  const shapeRef = useRef<THREE.Points>(null);
+  const starMaterialRef = useRef<THREE.PointsMaterial>(null);
+  const hitboxRef = useRef<THREE.Mesh>(null);
+  const textRef = useRef<THREE.PointsMaterial>(null);
 
   const [points, setPoints] = useState<Float32Array>();
   const [hovered, setHovered] = useState(false);

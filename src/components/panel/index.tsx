@@ -46,7 +46,7 @@ export function Panel(props: PanelProps) {
               <FontAwesomeIcon icon={faTimes} color={colors.textsecondary} size={'sm'} />
             </BaseButton>
           </div>
-          <div className='w-full h-[1px] mt-4 bg-textsecondary/30' />
+          <div className='w-full h-px mt-4 bg-textsecondary/30' />
         </div>
         {children}
       </div>

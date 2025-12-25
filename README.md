@@ -43,7 +43,6 @@ Follow these instructions to run and deploy your website:
 Here is what you need to get started with this project
 
 - [Node.js](https://nodejs.org/en/)
-- [Yarn](https://yarnpkg.com/getting-started/install)
 - [Git](https://git-scm.com/downloads)
 
 ### ⚙️ Download and Run Locally
@@ -69,7 +68,7 @@ git clone https://github.com/YOURGITHUBNAME/YOURREPO.git
 In the root directory of the project, run the following command to install all dependencies:
 
 ```bash
-yarn
+npm i
 ```
 
 **Step 4:**
@@ -77,7 +76,7 @@ yarn
 Again in the root directory, run this command to start the local development server
 
 ```bash
-yarn dev
+npm run dev
 ```
 
 **Step 5:**

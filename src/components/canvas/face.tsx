@@ -9,7 +9,7 @@ export function FaceSquare(props: FaceSquareProps) {
   const { position } = props;
 
   const texture = useLoader(THREE.TextureLoader, '/face.png');
-  const meshRef = useRef<THREE.Mesh>();
+  const meshRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     meshRef.current.rotation.y = state.clock.elapsedTime;

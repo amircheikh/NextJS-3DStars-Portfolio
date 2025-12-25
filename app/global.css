@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../tailwind.config.ts';
 
 @layer base {
   * {
@@ -15,5 +15,9 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
+  }
+
+  button {
+    cursor: pointer;
   }
 }

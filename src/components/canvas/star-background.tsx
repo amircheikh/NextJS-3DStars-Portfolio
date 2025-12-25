@@ -7,7 +7,7 @@ import { useCameraMovement } from '../provider/camera';
 
 export function StarBackground() {
   const { targetPosition } = useCameraMovement();
-  const ref = useRef<THREE.Points>();
+  const ref = useRef<THREE.Points>(null);
   const [sphere] = useState(() => random.inSphere(new Float32Array(5001), { radius: 3 }));
 
   useFrame((_, delta) => {

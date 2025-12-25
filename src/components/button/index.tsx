@@ -5,11 +5,11 @@ import click from '../../sounds/click-1.mp3';
 export function BaseButton(
   props: DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & { isBack?: boolean },
 ) {
-  const { isBack, onClick } = props;
+  const { isBack, onClick, ...restProps } = props;
   const [playClick] = useSound(click, { playbackRate: isBack ? 0.85 : 1 });
   return (
     <button
-      {...props}
+      {...restProps}
       onClick={(e) => {
         onClick(e);
         playClick();

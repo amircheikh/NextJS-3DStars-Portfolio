@@ -26,7 +26,7 @@ interface SpaceProps {
 export function Space(props: SpaceProps) {
   const { showStartScreen, onClickAbout, onClickExperience, onClickProjects, onClickResume } = props;
 
-  const cameraRef = useRef<THREE.PerspectiveCamera>();
+  const cameraRef = useRef<THREE.PerspectiveCamera>(null);
 
   const { cameraInitialPos, cameraDefaultRotation, targetPosition, targetRotation, cameraSpeed, handleZoomCamera } =
     useCameraMovement();
